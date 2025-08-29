@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquera Meal Track</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="root"></div>
+    
+    <!-- React and React DOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- QR Code Libraries -->
+    <script src="https://unpkg.com/qrcode.react@3.1.0/lib/index.js" crossorigin></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" crossorigin></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- React Components -->
+    <script type="text/babel" src="{{ url_for('static', filename='js/components/Login.js') }}"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='js/components/OptIn.js') }}"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='js/components/MealVerification.js') }}"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='js/components/AdminDashboard.js') }}"></script>
+    
+    <!-- Main App -->
+    <script type="text/babel" src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
