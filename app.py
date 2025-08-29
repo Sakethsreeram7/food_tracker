@@ -16,13 +16,25 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-for-lunch-track
 
 # Database configuration - use PostgreSQL in production, SQLite in development
 DATABASE_URL = os.environ.get('DATABASE_URL')
-if DATABASE_URL and DATABASE_URL.startswith('postgres://'):
-    # Heroku/Railway style PostgreSQL URL
+# if DATABASE_URL and DATABASE_URL.startswith('postgres://'):
+#     # Heroku/Railway style PostgreSQL URL
+#     DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+#     app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+# else:
+#     # Local development
+#     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lunch_track.db'
+
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL not set for production; refusing to use SQLite.")
+
+if DATABASE_URL.startswith('postgres://'):
     DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
-    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-else:
-    # Local development
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lunch_track.db'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# Optional: verbose connection debug for one deploy
+# app.config['SQLALCHEMY_ECHO'] = True
+# app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {"connect_args": {"sslmode": "require"}}
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
