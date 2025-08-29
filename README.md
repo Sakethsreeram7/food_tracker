@@ -25,6 +25,6 @@ A Flask-based application for tracking meal opt-ins and generating QR codes for 
 ## Environment Variables
 
 - `SECRET_KEY`: Secret key for Flask sessions
-- `DATABASE_URL`: Database connection string (automatically set by Railway)
-- `PORT`: Port to run the application on (automatically set by Railway)
+- `DATABASE_URL`: Database connection string 
+- `PORT`: Port to run the application on 
 - `FLASK_ENV`: Set to `development` for local development, `production` for deployment
